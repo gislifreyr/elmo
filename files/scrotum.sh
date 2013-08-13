@@ -1,5 +1,7 @@
 #!/bin/bash
-            
+
+# slightly modified http://tommi.org/static/screenshot.sh
+
 where="$HOME/scrots/`date +%Y/%m/%d`"
 file="$where`date +/scrot-%H%M`"
 
