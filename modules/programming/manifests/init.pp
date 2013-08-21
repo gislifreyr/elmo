@@ -2,7 +2,7 @@ class programming {
 	include programming::c
 	include programming::python
 	include programming::ruby
-	include programming::version-control
+	#include programming::version-control
 }
 
 class programming::c {
@@ -20,6 +20,7 @@ class programming::ruby {
 	package { "bundler": ensure => installed, provider => gem }
 }
 
-class programming::version-control {
-	package { "git": ensure => installed }
-}
+#tokum ut, tharf ad gera fra source
+#class programming::version-control {
+#	package { "git": ensure => installed }
+#}
