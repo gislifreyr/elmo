@@ -1,14 +1,22 @@
 #!/bin/bash
 
+which lsb_release > /dev/null 2>&1 || echo "pl0x install lsb_release" && exit 1
+
 distro=$(lsb_release -si | tr '[A-Z]' '[a-z]')
-arch=$(uname -m)
 
 if [[ $distro == "fedora" ]]
 then
 	release=$(lsb_release --release --short)
 	echo "$distro - $release"
-	sudo rpm -ivh http://yum.puppetlabs.com/fedora/f$release/products/$arch/puppetlabs-release-$release-7.noarch.rpm
-	echo "rpm -ivh http://yum.puppetlabs.com/fedora/f$release/products/$arch/puppetlabs-release-$release-7.noarch.rpm"
+	sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-$distro-$release.noarch.rpm
+	echo "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-$distro-$release.noarch.rpm"
+	sudo yum update install puppet
+elif [[ $distro == "centos" ]]
+then
+	release=$(lsb_release --release --short | cut -d '.' -f 1)
+	echo "$distro - $release"
+	sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-$release.noarch.rpm
+	echo "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-$release.noarch.rpm"
 	sudo yum update install puppet
 elif [[ $distro == "debian" ]] || [[ $distro == "ubuntu" ]]
 then
