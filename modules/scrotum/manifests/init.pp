@@ -21,7 +21,7 @@ class scrotum {
 
 	cron { 'scrotum.sh':
 	
-		command	=> '/home/gisli/devel/debora/files/scrotum.sh',
+		command	=> '/home/gisli/devel/elmo/files/scrotum.sh',
 		minute	=> '*/12',
 		hour	=> [ '9-16' ],
 		weekday	=> [ '1-5' ],
